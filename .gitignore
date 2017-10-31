@@ -1,0 +1,8 @@
+packages/
+.vs/
+/Ark.TracePyramid/obj
+/Ark.TracePyramid/bin
+/Ark.TracePyramid.UnitTests/obj
+/Ark.TracePyramid.UnitTests/bin
+/Ark.TracePyramid.Runner/obj
+/Ark.TracePyramid.Runner/bin
