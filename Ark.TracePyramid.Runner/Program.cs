@@ -57,14 +57,12 @@ namespace Ark.TracePyramid.Runner
             foreach (var item in list)
             {
                 traceinfo.Mark(x => x.Information("line {@item}", item));
-                //logger.Information("line {@item}", item);
 
             }
             traceinfo = traceinfo.MarkOn<ArkIntegrationTest>(x => x.Test3);
             foreach (var item in list)
             {
                 traceinfo.Mark(x => x.Information("line {@item}", item));
-                //logger.Information("line {@item}", item);
 
             }
 
