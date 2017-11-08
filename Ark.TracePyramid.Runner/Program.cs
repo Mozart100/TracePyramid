@@ -1,35 +1,4 @@
-﻿
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-using GenFu;
+﻿using GenFu;
 using Serilog;
 using Serilog.Context;
 using Serilog.Core;
@@ -60,8 +29,6 @@ namespace Ark.TracePyramid.Runner
 
             var list = A.ListOf<Person>(10);
 
-            //Log.ForContext("Source", typeof(CartController).FullName)
-            //var tmp = Log.ForContext("Source", typeof(CartController).FullName);
 
             foreach (var item in list)
             {
@@ -76,7 +43,8 @@ namespace Ark.TracePyramid.Runner
 
             foreach (var item in list)
             {
-                logger.ToTraceInfo<ArkIntegrationTest>(x => x.Test2).MarkOn<ArkIntegrationTest>(x => x.Test2)
+                logger.ToTraceInfo<ArkIntegrationTest>(x => x.Test2)
+                    .MarkOn<ArkIntegrationTest>(x => x.Test2)
                     .MarkOn("ssss")
                     .Mark(x => x.Information("line {@item}", item));
                 //logger.Information("line {@item}", item);
@@ -88,15 +56,14 @@ namespace Ark.TracePyramid.Runner
             foreach (var item in list)
             {
                 traceinfo.Mark(x => x.Information("line {@item}", item));
-
             }
+
             traceinfo = traceinfo.MarkOn<ArkIntegrationTest>(x => x.Test3);
             foreach (var item in list)
             {
                 traceinfo.Mark(x => x.Information("line {@item}", item));
 
             }
-
             Console.ReadKey();
         }
     }
@@ -113,7 +80,7 @@ namespace Ark.TracePyramid.Runner
         {
             var applicationAssembly = Assembly.GetEntryAssembly();
 
-            var name = applicationAssembly.GetName().Name;
+            var name    = applicationAssembly.GetName().Name;
             var version = applicationAssembly.GetName().Version;
 
 
