@@ -2,16 +2,12 @@
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Serilog.Core;
 using Serilog.Events;
 
 namespace Ark.TracePyramid
 {
-
-    interface IStructuredLog : ILogger
+    public interface IStructuredLog : ILogger
     {
         IIndexResponse StoreIndex<TClass>(TClass item) where TClass : class;
     }
@@ -38,7 +34,7 @@ namespace Ark.TracePyramid
         //--------------------------------------------------------------------------------------------------------------------------------------
 
         //ELD
-        public IIndexResponse StoreIndex<TClass>(TClass item) where TClass:class
+        public IIndexResponse StoreIndex<TClass>(TClass item) where TClass : class
         {
             return _client.Index(item);
         }
@@ -262,7 +258,7 @@ namespace Ark.TracePyramid
 
         public void Information<T0, T1>(string messageTemplate, T0 propertyValue0, T1 propertyValue1)
         {
-            throw new NotImplementedException();
+            _logger.Information<T0, T1>(messageTemplate, propertyValue0, propertyValue1);
         }
 
         public void Information<T0, T1>(Exception exception, string messageTemplate, T0 propertyValue0, T1 propertyValue1)
@@ -344,7 +340,7 @@ namespace Ark.TracePyramid
 
         public void Warning(Exception exception, string messageTemplate)
         {
-            throw new NotImplementedException();
+            _logger.Information(exception, messageTemplate);
         }
 
         public void Warning(string messageTemplate, params object[] propertyValues)
