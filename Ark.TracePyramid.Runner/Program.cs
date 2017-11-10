@@ -29,7 +29,7 @@ namespace Ark.TracePyramid.Runner
 
             var list = A.ListOf<Person>(10);
 
-
+            //Test
             foreach (var item in list)
             {
                 logger.ToTraceInfo<ArkIntegrationTest>(x => x.Test).Mark(x => x.Information("line {@item}", item));
@@ -38,20 +38,25 @@ namespace Ark.TracePyramid.Runner
                 //    logger.Information("line {@item}", item);
                 //}
             }
+            logger.PrintSeperator();
 
             var cartLog = Log.ForContext<Program>();
 
+            
             foreach (var item in list)
             {
-                logger.ToTraceInfo<ArkIntegrationTest>(x => x.Test2)
-                    .MarkOn<ArkIntegrationTest>(x => x.Test2)
+                logger.ToTraceInfo<ArkIntegrationTest>(x => x.XXX)
+                    .MarkOn<ArkIntegrationTest>(x => x.XXX)
                     .MarkOn("ssss")
                     .Mark(x => x.Information("line {@item}", item));
                 //logger.Information("line {@item}", item);
 
             }
 
-            var traceinfo = logger.ToTraceInfo<ArkIntegrationTest>(x => x.Test).MarkOn<ArkIntegrationTest>(x => x.Test2);
+            logger.PrintSeperator();
+
+
+            var traceinfo = logger.ToTraceInfo<ArkIntegrationTest>(x => x.Test).MarkOn<ArkIntegrationTest>(x => x.XXX);
 
             foreach (var item in list)
             {
@@ -104,9 +109,9 @@ namespace Ark.TracePyramid.Runner
 
     public class ArkIntegrationTest : SerilogBookmarkBase
     {
-        public string Test => "test";
-        public string Test2 => "xxx";
-        public string Test3 => "advance";
+        public string Test => "Test";
+        public string XXX => "XXX";
+        public string Test3 => "TEST3";
 
 
         public override string Topic => "My Test";
