@@ -20,12 +20,14 @@ namespace Ark.TracePyramid.Runner
 
         static void Main(string[] args)
         {
-            var logger = new LoggerConfiguration()
+            var serilog = new LoggerConfiguration()
                 .Enrich.With(new ApplicationDetailsEnricher())
                   .WriteTo.Console(outputTemplate: OutTemplate)
                   .Enrich.WithProperty("Environment", "Developer")
                   .Enrich.FromLogContext()
                   .CreateLogger();
+
+            var logger = new StructuredLog(serilog, new ElasticConfig(uri: "http://localhost:9200", index: "ark-personstorage"));
 
             var list = A.ListOf<Person>(10);
 
